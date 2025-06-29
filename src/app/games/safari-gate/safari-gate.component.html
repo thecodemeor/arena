@@ -1,0 +1,70 @@
+<main>
+    <div class="container">
+        @for ( circle of circles; track circle; let index = $index ) {
+            <div class="group" [ngClass]="circle.label">
+                <div [id]="circle.label" class="circle" [style.rotate]="rotatingCircle( index )">
+                    @for ( load of circle.loads; track load ) {
+                        <div class="radius" [ngClass]="load.ball"></div>
+                    }
+                </div>
+                <div class="arrow" [ngClass]="circle.arrow">
+                    <button class="left" (click)="arrowClick( index, circle.label, 'left' )"></button>
+                    <button class="right" (click)="arrowClick( index, circle.label, 'right' )"></button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="ui">
+        <!-- <img src="assets/images/safari-gate/wall.svg" class="wall" alt="wall">
+        <img src="assets/images/safari-gate/wall.svg" class="wall" alt="wall"> -->
+        <div class="shuffle" (click)="shuffle( 10 )">Shuffle</div>
+        <div class="time">{{ solution }}</div>
+
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="direction bottomup"><path d="m14.707 12.707-4 4a1 1 0 0 1-1.414-1.414L12.586 12 9.293 8.707a1 1 0 1 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="direction topup"><path d="m14.707 12.707-4 4a1 1 0 0 1-1.414-1.414L12.586 12 9.293 8.707a1 1 0 1 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="direction top"><path d="m14.707 12.707-4 4a1 1 0 0 1-1.414-1.414L12.586 12 9.293 8.707a1 1 0 1 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="direction right"><path d="m14.707 12.707-4 4a1 1 0 0 1-1.414-1.414L12.586 12 9.293 8.707a1 1 0 1 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="direction bottom"><path d="m14.707 12.707-4 4a1 1 0 0 1-1.414-1.414L12.586 12 9.293 8.707a1 1 0 1 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="direction left"><path d="m14.707 12.707-4 4a1 1 0 0 1-1.414-1.414L12.586 12 9.293 8.707a1 1 0 1 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414z"/></svg>
+    </div>
+
+
+    <div *ngIf="intro" class="dialog">
+        <div class="intro">
+            <img src="assets/images/safari-gate/element-rock-info.svg" alt="Element Rock Info">
+            <div class="content">
+                <h1>Safari Gate</h1>
+                <p>
+                    Train your brain by solving color-matching puzzles that improve focus and problem-solving skills.
+                </p>
+                <ul>
+                    <li>Use the arrow buttons to rotate the gear.</li>
+                    <li>Balls will roll and transfer automatically from gear to gear when aligned with a empty hole.</li>
+                    <li>Matches its color until all balls are correctly grouped.</li>
+                </ul>
+            </div>
+            <button class="close" (click)="intro = false">
+                <h2>X</h2>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="intro" class="dialog">
+        <div class="intro">
+            <img src="assets/images/safari-gate/element-rock-info.svg" alt="Element Rock Info">
+            <div class="content">
+                <h1>Safari Gate</h1>
+                <p>
+                    Train your brain by solving color-matching puzzles that improve focus and problem-solving skills.
+                </p>
+                <ul>
+                    <li>Use the arrow buttons to rotate the gear.</li>
+                    <li>Balls will roll and transfer automatically from gear to gear when aligned with a empty hole.</li>
+                    <li>Matches its color until all balls are correctly grouped.</li>
+                </ul>
+            </div>
+            <button class="close" (click)="intro = false">
+                <h2>X</h2>
+            </button>
+        </div>
+    </div>
+</main>

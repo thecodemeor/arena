@@ -1,0 +1,294 @@
+$size: min( 200px, min( 30vh, 30vw ));
+$rad: calc( 0.2 * $size );
+
+$color1: #479ce7;
+$color2: #ef476f;
+$color3: #ffd166;
+$color4: #06d6a0;
+$background: #1e1e1e;
+:host {
+    width: 100vw; height: 100dvh;
+    overflow: hidden;
+    h1, h2 {
+        $title-size: 4.5rem;
+        margin-bottom: 2rem;
+        font-family: "Juggerrock", sans-serif;
+        font-size: $title-size;
+        line-height: calc( $title-size - 1rem );
+        color: #8e8e8e;
+        text-align: center;
+        text-shadow: 0 2px 0 #dbdbdb, 0 -2px 0 #595851;
+    }
+    li, p {
+        $paragraph-size: 1.2rem;
+        margin-bottom: 1rem;
+        font-family: "Juggerrock", sans-serif;
+        font-size: $paragraph-size;
+        line-height: calc( $paragraph-size );
+        color: #8e8e8e;
+        text-shadow: 0 1px 0 #dbdbdb;
+    }
+    p {
+        width: 85%;
+        margin: 0 auto 1rem;
+        text-align: center;
+    }
+    .dialog {
+        position: fixed;
+        top: 0; left: 0;
+        display: flex;
+        width: 100dvw; height: 100dvh;
+        background: rgba(30, 30, 30, 0.95);
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+    }
+}
+.container {
+    position: relative;
+    display: flex;
+    width: 100dvw; height: 100dvh;
+    background: $background;
+    justify-content: center;
+    align-items: center;
+    .group {
+        position: absolute;
+        left: 0; right: 0; top: 0; bottom: 0;
+        width: $size; height: $size;
+        margin: auto;
+        .circle {
+            position: absolute;
+            top: 0; left: 0; 
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            transition: all 0.5s;
+            background-position: center;
+            background-size: contain;
+            .radius {
+                position: absolute;
+                top: 0; left: calc( 50% - ( $rad / 2 ));
+                width: $rad; height: 50%;
+                transform-origin: 50% 100%;
+                &:nth-child( 1 ){ rotate: 60deg;}
+                &:nth-child( 2 ){ rotate: 120deg;}
+                &:nth-child( 3 ){ rotate: 180deg;}
+                &:nth-child( 4 ){ rotate: 240deg;}
+                &:nth-child( 5 ){ rotate: 300deg;}
+                &::before {
+                    content: '';
+                    position: absolute;
+                    display: block;
+                    top: -1px;
+                    width: $rad; height: $rad;
+                    border-radius: 0 0 $rad $rad;
+                    background: $background;
+                }
+                &::after {
+                    content: '';
+                    position: absolute; 
+                    top: calc( -0.9 * $rad ); left: calc( 0.1 * $rad );
+                    display: block;
+                    width: calc( 0.8 * $rad ); height: calc( 0.8 * $rad );
+                    color: #fff; 
+                    border-radius: 100%;
+                    background-position: center;
+                    // background-size: contain;
+                    transition: top 0.4s ease-in-out, background 1.2s ease-in;
+                }
+
+                &.a::after { 
+                    top: calc( 0.06 * $rad ); 
+                    background: $color1; 
+                    // background-image: url( 'src/assets/images/safari-gate/element-ball-rock-blue.svg' );
+                    transition: top 0.4s ease-in-out, background 0s linear;
+                }
+                &.b::after { 
+                    top: calc( 0.06 * $rad ); 
+                    background: $color2; 
+                    // background-image: url( 'src/assets/images/safari-gate/element-ball-rock-red.svg' );
+                    transition: top 0.4s ease-in-out, background 0s linear;
+                }
+                &.c::after { 
+                    top: calc( 0.06 * $rad ); 
+                    background: $color3; 
+                    // background-image: url( 'src/assets/images/safari-gate/element-ball-rock-yellow.svg' );
+                    transition: top 0.4s ease-in-out, background 0s linear;
+                }
+                &.d::after { 
+                    top: calc( 0.06 * $rad ); 
+                    background: $color4; 
+                    // background-image: url( 'src/assets/images/safari-gate/element-ball-rock-green.svg' );
+                    transition: top 0.4s ease-in-out, background 0s linear;
+                }
+            }
+        }
+        &.A {
+            left: calc( $size * 1.74 );
+            .circle { background-image: url( 'src/assets/images/safari-gate/element-round-rock-blue.svg' );}
+        }
+        &.B {
+            bottom: calc( $size * -1 );
+            .circle { background-image: url( 'src/assets/images/safari-gate/element-round-rock-red.svg' );}
+        }
+        &.C {
+            right: calc( $size * 1.74 );
+            .circle { background-image: url( 'src/assets/images/safari-gate/element-round-rock-yellow.svg' );}
+        }
+        &.D {
+            top: calc( $size * -1 );
+            .circle { background-image: url( 'src/assets/images/safari-gate/element-round-rock-green.svg' );}
+        }
+        .arrow {
+            position: absolute;
+            &.a { 
+                top: 0; right: calc( $size * -0.5);
+                transform: translateX( 10% );
+                rotate: 90deg;
+                .left { background-image: url('src/assets/images/safari-gate/element-arrowleft-rock-blue.svg')}
+                .right { background-image: url('src/assets/images/safari-gate/element-arrowright-rock-blue.svg')}
+            }
+            &.b { 
+                bottom: calc( $size * -0.5); left: 50%;
+                transform: translateX( 50% );
+                rotate: 180deg;
+                .left { background-image: url('src/assets/images/safari-gate/element-arrowleft-rock-red.svg')}
+                .right { background-image: url('src/assets/images/safari-gate/element-arrowright-rock-red.svg')}
+            }
+            &.c { 
+                top: 0; left: calc( $size * -0.5);
+                transform: translateX( -10% );
+                rotate: 270deg; 
+                .left { background-image: url('src/assets/images/safari-gate/element-arrowleft-rock-yellow.svg')}
+                .right { background-image: url('src/assets/images/safari-gate/element-arrowright-rock-yellow.svg')}
+            }
+            &.d { 
+                top: calc( $size * -0.5); left: 50%;
+                transform: translateX( -50% );
+                .left { background-image: url('src/assets/images/safari-gate/element-arrowleft-rock-green.svg')}
+                .right { background-image: url('src/assets/images/safari-gate/element-arrowright-rock-green.svg')}
+            }
+            .left, .right {
+                position: relative;
+                width: calc( 0.42 * $size ); height: calc( 0.42 * $size );
+                border: none;
+                background: transparent;
+                background-size: contain;
+                background-repeat: no-repeat;
+                cursor: pointer;
+                transition: all 0.3s;
+                &:hover { scale: 1.2; }
+                &:active { scale: 0.9; }
+            }
+            .left { left: calc( -0.42 * $size ); }
+            .right {
+                top: calc( -0.42 * $size );
+                left: calc( 0.42 * $size );
+            }
+        }
+    }
+}
+
+.ui {
+    position: absolute;
+    left: 0; right: 0; top: 0; bottom: 0;
+    width: 100%; height: 100%;
+    z-index: 100;
+    pointer-events: none;
+
+    .wall {
+        position: absolute;
+        top: 0;
+        width: auto; height: 100%;
+        &:nth-child( 1 ) { left: -50px;}
+        &:nth-child( 2 ) { right: -50px;}
+    }
+
+    .direction {
+        position: absolute;
+        width: calc(0.5 * $size);
+        path { fill: #0002; }
+        left: 0; right: 0; top: 0; bottom: 0;
+        margin: auto;
+        &.top{ top: calc(-0.98 * $size); left: calc(0.03 * $size); rotate: 30deg; }
+        &.right{ top: calc(0.03 * $size); left: calc(1.7* $size); rotate: 150deg; }
+        &.bottom{ top: calc(0.98 * $size); left: calc(-0.03 * $size); rotate: 210deg; }
+        &.left{ top: calc(-0.03 * $size); left: calc(-1.7* $size); rotate: 330deg; }
+        &.topup{ 
+            width: calc(0.18 * $size);
+            top: calc(-0.64 * $size); left: calc(-0 * $size); rotate: 270deg;
+            background: $color4;
+            border-radius: 100%;
+            z-index: -1;
+        }
+        &.bottomup{ 
+            width: calc(0.18 * $size);
+            top: calc(0.64 * $size); left: calc(-0 * $size); rotate: 270deg;
+            background: $color2;
+            border-radius: 100%;
+            z-index: -1;
+        }
+    }
+
+    .shuffle {
+        position: absolute;
+        right: 1em;
+        top: 1em;
+        padding: 4px 24px;
+        font-size: 1.2em;
+        color: #1e1e1e;
+        background: $color3;
+        border-radius: 2px;
+        pointer-events: all;
+        cursor: pointer;
+        border: 3px solid #0006;
+        &:hover{ background: #fffc}
+    }
+    .time {
+        position: absolute;
+        right: 2em; bottom: 1.4em;
+        display: flex;
+        width: fit-content; height: 8rem;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: auto; height: 100%;
+        }
+        h2 {
+            position: absolute;
+            width: 100%;
+            margin: 0 0 1.5rem;
+            text-align: center;
+            color: black;
+        }
+    }
+}
+
+.intro {
+    display: flex;
+    position: relative;
+    width: fit-content; height: 90%;
+    justify-content: center;
+    align-items: center;
+    animation: fall 0.8s ease-in-out;
+    img { width: auto; height: 100%;}
+    .content {
+        display: flex;
+        position: absolute;
+        width: 50%; height: 65%;
+        flex-direction: column;
+    }
+    button.close {
+        position: absolute;
+        bottom: 4%; right: 16%;
+        border: none;
+        background: transparent;
+        h2:hover { color: rgb(180, 0, 0);}
+        h2:active { color: white}
+    }
+    @keyframes fall {
+        0% { transform: translateY( -150% );}
+        60% { transform: translateY( 5% );}
+        80% { transform: translateY( -3% );}
+        100% { transform: translateY( 0% );}
+    }
+}
